@@ -1,0 +1,53 @@
+﻿<CascadingValue Value="this">
+    <div class="menu" >
+        @foreach (TabChild child in Tabs)
+        {
+        <div @onmouseout=@(() => ToggleTab(child)) @onmouseover=@( () => ToggleTab(child) ) > 
+                <button type="button" 
+                         @onclick="child.OnClickCallback"
+                          class="btn btn-secondary @GetActiveButtonClass(child)">
+                    @child.Text
+                </button>
+        </div>}
+    </div>
+    @ChildContent
+</CascadingValue>
+
+@code { [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter] public string CssClass { get; set; }
+
+    [Parameter]
+    public string ClassName { get; set; }
+
+    public TabChild ActiveTabNested { get; set; }
+    public TabChild ActiveTab { get; set; }
+    List<TabChild> Tabs = new List<TabChild>();
+    private bool hasChildren = false;
+
+    internal void AddTab(TabChild tabChild)
+    {
+        Tabs.Add(tabChild);
+        StateHasChanged();
+    }
+
+    string GetActiveClass(TabChild child)
+    {
+        return hasChildren ? "" : "";
+    }
+
+    string GetActiveButtonClass(TabChild child)
+    {
+        this.hasChildren = true;
+        if (child.ChildContent != null)
+        {
+            hasChildren = true;
+        }
+
+        return child.ChildContent != null ? "dropdown-toggle" : "";
+    }
+
+    void ToggleTab(TabChild child)
+    {
+        ActiveTab = child;
+    } }
