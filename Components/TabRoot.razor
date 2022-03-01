@@ -1,13 +1,13 @@
 ﻿<CascadingValue Value="this">
-    <div class="menu" >
+    <div class="test menu">
         @foreach (TabChild child in Tabs)
         {
-        <div @onmouseout=@(() => ToggleTab(child)) @onmouseover=@( () => ToggleTab(child) ) > 
-                <button type="button" 
-                         @onclick="child.OnClickCallback"
-                          class="btn btn-secondary @GetActiveButtonClass(child)">
-                    @child.Text
-                </button>
+        <div  @onmouseout=@(() => ToggleTab(child)) @onmouseover=@( () => ToggleTab(child) )>
+            <button type="button"
+                    @onclick="child.OnClickCallback"
+                    class="btn btn-secondary @GetActiveButtonClass(child)">
+                @child.Text
+            </button>
         </div>}
     </div>
     @ChildContent
@@ -15,12 +15,7 @@
 
 @code { [Parameter]
     public RenderFragment ChildContent { get; set; }
-    [Parameter] public string CssClass { get; set; }
 
-    [Parameter]
-    public string ClassName { get; set; }
-
-    public TabChild ActiveTabNested { get; set; }
     public TabChild ActiveTab { get; set; }
     List<TabChild> Tabs = new List<TabChild>();
 
@@ -38,4 +33,5 @@
     void ToggleTab(TabChild child)
     {
         ActiveTab = child;
-    } }
+    }}
+

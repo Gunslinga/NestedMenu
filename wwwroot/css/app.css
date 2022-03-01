@@ -184,4 +184,11 @@ app {
 
 .menu div {
     display: inline-block;
+    margin-bottom:5px;
+}
+
+
+.test:not(:first-child) > div {
+    display: block;
+    margin-left:15px;
 }
