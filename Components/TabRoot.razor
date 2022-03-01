@@ -1,5 +1,5 @@
 ﻿<CascadingValue Value="this">
-    <div class="test menu">
+    <div class="showActive menu">
         @foreach (TabChild child in Tabs)
         {
         <div  @onmouseout=@(() => ToggleTab(child)) @onmouseover=@( () => ToggleTab(child) )>

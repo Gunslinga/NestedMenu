@@ -188,7 +188,7 @@ app {
 }
 
 
-.test:not(:first-child) > div {
+.showActive:not(:first-child) > div {
     display: block;
     margin-left:15px;
 }
